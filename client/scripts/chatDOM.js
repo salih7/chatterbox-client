@@ -5,7 +5,7 @@ $(document).ready(() => {
     // do some stuff.
     var msg = $('.chatMessage').val();
     app.send({
-      username: 'shawndrost',
+      username: 'Google',
       text: msg,
       roomname: '4chan'
     });

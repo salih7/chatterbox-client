@@ -35,9 +35,9 @@ class App {
 
   init() {
     this.fetch();
-    setInterval(() => {
-      this.fetch();
-    }, 3000);
+    // setInterval(() => {
+    //   this.fetch();
+    // }, 3000);
     // this.send();
   }
 
@@ -95,13 +95,16 @@ class App {
 
   clearMessages() {
     console.log('MESSAGE CLEARED');
+    $('#chats').empty();
   }
 
   renderRoom() {
     console.log('RENDERING A ROOM YO!');
   }
 
+  handleSubmit() {
 
+  }
 }
 
 var app = new App;
