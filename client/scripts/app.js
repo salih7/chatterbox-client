@@ -64,11 +64,12 @@ class App {
       // This is the url you should use to communicate with the parse API server.
       url: this.server,
       type: 'GET',
+      // data: {'order': '-createdAt'},
       data: {'order': '-createdAt'},
       contentType: 'application/json',
       success: function (data) {
         console.log('chatterbox: Message sent', data);
-        console.log('DATA RESULTS: ', data.results);
+        // console.log('DATA RESULTS: ', data.results);
         // let counter = 0;
         // for (counter; counter < data.results.length; counter++) {
         //   app.renderMessage(data.results.text);
