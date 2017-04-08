@@ -18,4 +18,9 @@ $(document).ready(() => {
     }
   });
 
+  $('.roomButtonClick').on('click', function(event) {
+    var msg = $('.roomNameInput').val();
+    app.handleRooms(msg);
+  });
+
 });

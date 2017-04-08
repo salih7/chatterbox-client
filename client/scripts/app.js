@@ -106,6 +106,11 @@ class App {
     };
     app.send(message);
   }
+
+  handleRooms(roomName) {
+    this.roomname = roomName;
+    $('.roomChange').append('<option value="' + roomName + '">' + roomName + '</option>');
+  }
 }
 
 var app = new App;
