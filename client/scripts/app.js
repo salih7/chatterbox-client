@@ -26,12 +26,19 @@
 
 class App {
   constructor() {
-    this.server = 'http://parse.sfm8.hackreactor.com/';
+    this.server = 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages';
+    this.username = '';
+    this.roomname = 'Lobby';
+    this.friendList = {};
+
   }
 
   init() {
     this.fetch();
-    this.send();
+    // setInterval(() => {
+    //   this.fetch();
+    // }, 3000);
+    // this.send();
   }
 
   send(message) {
@@ -42,7 +49,7 @@ class App {
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
-        console.log('chatterbox: Message sent');
+        console.log('chatterbox: Message sent', data);
       },
       error: function (data) {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -56,10 +63,14 @@ class App {
       // This is the url you should use to communicate with the parse API server.
       url: this.server,
       type: 'GET',
-      data: JSON.stringify(message),
+      data: {},
       contentType: 'application/json',
       success: function (data) {
-        console.log('chatterbox: Message sent');
+        console.log('chatterbox: Message sent', data);
+        console.log('DATA RESULTS: ', data.results);
+        data.results.forEach(result => {
+          app.renderMessage(result.text);
+        });
       },
       error: function (data) {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -67,6 +78,25 @@ class App {
       }
     });
   }
+
+  renderMessage(message) {
+    console.log('MESSAGE', message);
+    $('#chats').append('<div class="username chat">' + message + '</div>');
+  }
+
+  clearMessages() {
+    console.log('MESSAGE CLEARED');
+  }
+
+  renderRoom() {
+    console.log('RENDERING A ROOM YO!');
+  }
+
+
 }
 
 var app = new App;
+
+
+
+
