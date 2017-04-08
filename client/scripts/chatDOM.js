@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(function() {
   app.init();
 
   $('.chatSubmit').on('click', function(event) {
@@ -21,6 +21,24 @@ $(document).ready(() => {
   $('.roomButtonClick').on('click', function(event) {
     var msg = $('.roomNameInput').val();
     app.handleRooms(msg);
+  });
+
+  $('#send .submit').on('submit', function(event) {
+    var msg = $('#message').val();
+    app.handleSubmit(msg);
+    event.preventDefault();
+  });
+
+  $(this).on('click', '.username', function(event) {
+    var userName = $(event.target).text();
+    $(event.target).addClass('friend');
+    app.handleUsernameClick(userName);
+    var friendsArr = Array.from($('div .username'));
+    friendsArr.forEach(function(user) {
+      if(app.friendList.hasOwnProperty($(user).text().match(/^\w+/))) {
+        $(user).addClass('friend');
+      }
+    });
   });
 
 });
