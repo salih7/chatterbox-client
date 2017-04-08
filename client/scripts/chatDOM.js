@@ -1,9 +1,15 @@
 $(document).ready(() => {
   app.init();
 
-  $('.chatSubmit').on('click', () => {
+  $('.chatSubmit').on('click', (event) => {
     // do some stuff.
-    app.post();
+    var msg = $('.chatMessage').val();
+    app.send({
+      username: 'shawndrost',
+      text: msg,
+      roomname: '4chan'
+    });
+    event.preventDefault();
   });
 
 });

@@ -30,14 +30,14 @@ class App {
     this.username = '';
     this.roomname = 'Lobby';
     this.friendList = {};
-
+    this.text = '';
   }
 
   init() {
     this.fetch();
-    // setInterval(() => {
-    //   this.fetch();
-    // }, 3000);
+    setInterval(() => {
+      this.fetch();
+    }, 3000);
     // this.send();
   }
 
@@ -50,6 +50,7 @@ class App {
       contentType: 'application/json',
       success: function (data) {
         console.log('chatterbox: Message sent', data);
+        location.reload();
       },
       error: function (data) {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -63,14 +64,22 @@ class App {
       // This is the url you should use to communicate with the parse API server.
       url: this.server,
       type: 'GET',
-      data: {},
+      data: {'order': '-createdAt'},
       contentType: 'application/json',
       success: function (data) {
         console.log('chatterbox: Message sent', data);
         console.log('DATA RESULTS: ', data.results);
+        // let counter = 0;
+        // for (counter; counter < data.results.length; counter++) {
+        //   app.renderMessage(data.results.text);
+        //   if (counter === 9) {
+        //     return;
+        //   }
+        // }
         data.results.forEach(result => {
-          app.renderMessage(result.text);
+          app.renderMessage(result.username + ' says: ' + result.text);
         });
+
       },
       error: function (data) {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
