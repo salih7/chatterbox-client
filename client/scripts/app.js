@@ -27,8 +27,9 @@
 class App {
   constructor() {
     this.server = 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages';
-    this.username = '';
-    this.roomname = 'Lobby';
+    this.username = window.location.search.match(/\b=\w+/) ? window.location.search.match(/\b=\w+/)[0].slice(1) : '';
+    // alert(this.username);
+    this.roomname = 'lobby';
     this.friendList = {};
     this.text = '';
   }
@@ -69,14 +70,7 @@ class App {
       contentType: 'application/json',
       success: function (data) {
         console.log('chatterbox: Message sent', data);
-        // console.log('DATA RESULTS: ', data.results);
-        // let counter = 0;
-        // for (counter; counter < data.results.length; counter++) {
-        //   app.renderMessage(data.results.text);
-        //   if (counter === 9) {
-        //     return;
-        //   }
-        // }
+     
         data.results.forEach(result => {
           app.renderMessage(result.username + ' says: ' + result.text);
         });
@@ -99,12 +93,18 @@ class App {
     $('#chats').empty();
   }
 
-  renderRoom() {
+  renderRoom(room) {
     console.log('RENDERING A ROOM YO!');
+    $('#roomSelect').append('<div>' + room + '</div>');
   }
 
-  handleSubmit() {
-
+  handleSubmit(inputValue) {
+    var message = {
+      username: this.username,
+      text: inputValue,
+      roomname: this.roomname
+    };
+    app.send(message);
   }
 }
 
