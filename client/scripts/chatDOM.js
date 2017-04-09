@@ -40,5 +40,17 @@ $(document).ready(function() {
       }
     });
   });
-
+/*
+  $('.username').on('click', function(event) {
+    var userName = $(event.target).text();
+    $(event.target).addClass('friend');
+    app.handleUsernameClick(userName);
+    var friendsArr = Array.from($('div .username'));
+    friendsArr.forEach(function(user) {
+      if(app.friendList.hasOwnProperty($(user).text().match(/^\w+/))) {
+        $(user).addClass('friend');
+      }
+    });
+  });
+*/
 });

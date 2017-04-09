@@ -116,7 +116,7 @@ class App {
 
   handleUsernameClick(username) {
     var parseUsername = username.match(/^\w+/);
-    this.friendList[parseUsername[0]] = parseUsername[0];
+    parseUsername ? this.friendList[parseUsername[0]] = parseUsername[0] : null;
   }
 }
 
